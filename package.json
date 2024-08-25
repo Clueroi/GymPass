@@ -1,0 +1,23 @@
+{
+  "name": "gympass",
+  "version": "1.0.0",
+  "description": "gympass style app.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "22.5.0",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "fastify": "4.28.1",
+    "tsup": "8.2.4",
+    "tsx": "4.18.0"
+  }
+}
