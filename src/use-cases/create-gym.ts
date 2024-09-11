@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs'
 import { Gym,  } from '@prisma/client'
 import { GymsRepository } from '@/repositories/prisma/gyms-repository'
 
@@ -33,9 +32,6 @@ export class CreateGymUseCase{
             phone,
             title
         })
-        
-        return {
-            gym,
-        }
-    }
+        return { gym }
+    } 
 }

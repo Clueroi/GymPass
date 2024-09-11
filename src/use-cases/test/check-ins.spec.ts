@@ -34,8 +34,6 @@ describe('CheckIn Use Case', () => {
     })
 
     it('should be able to check in', async () => {
-
-
         const { checkIn } = await sut.execute({
             gymId: 'Gym-01',
             userId: 'User-01',
