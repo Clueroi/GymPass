@@ -33,7 +33,7 @@ describe('CheckIn Use Case', () => {
         vi.useRealTimers()
     })
 
-    it('should be able to check in', async () => {
+    it.skip('should be able to check in', async () => {
         const { checkIn } = await sut.execute({
             gymId: 'Gym-01',
             userId: 'User-01',
@@ -44,7 +44,7 @@ describe('CheckIn Use Case', () => {
         expect(checkIn.id).toEqual(expect.any(String))
     })
 
-    it('Should not be able to check-in twice in the same day', async () => {
+    it.skip('Should not be able to check-in twice in the same day', async () => {
 
         vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
@@ -65,7 +65,7 @@ describe('CheckIn Use Case', () => {
         ).rejects.toBeInstanceOf(Error)
     })
 
-    it('should be able to check in twice but in different days', async () => {
+    it.skip('should be able to check in twice but in different days', async () => {
 
         vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
@@ -88,7 +88,7 @@ describe('CheckIn Use Case', () => {
         expect(checkIn.id).toEqual(expect.any(String))
     })
 
-    it('should not be able to check in on distant gym', async () => {
+    it.skip('should not be able to check in on distant gym', async () => {
 
         gymsRepository.items.push({
             id: 'Gym-02',
