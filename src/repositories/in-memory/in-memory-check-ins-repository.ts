@@ -1,5 +1,5 @@
 import { Prisma, CheckIn } from "@prisma/client";
-import { checkInsRepository } from "../prisma/check-ins-repository";
+import { checkInsRepository } from "../check-ins-repository";
 import { randomUUID } from "node:crypto";
 import dayjs from "dayjs";
 
