@@ -14,7 +14,6 @@ import { makeRegisterUseCase } from '@/use-cases/factory/make-register-use-case'
     const {name, email, password} = registerBodySchema.parse(request.body)
 
     try{    
-       
         const registerUseCase = makeRegisterUseCase()
 
         await registerUseCase.execute({
