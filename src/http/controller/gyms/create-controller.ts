@@ -1,3 +1,4 @@
+import { makeCreateGymUseCase } from "@/use-cases/factory/make-create-gym-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
@@ -16,6 +17,16 @@ export async function CreateGym(request:FastifyRequest, reply:FastifyReply){
         })
     })
 
-
     const {title, description, phone, latitude, longitude} = createSchemaBody.parse(request.body)
+
+        const CreateGym = makeCreateGymUseCase()
+
+        CreateGym.execute({
+            title,
+            description,
+            phone,
+            latitude,
+            longitude
+        })
+
 }
