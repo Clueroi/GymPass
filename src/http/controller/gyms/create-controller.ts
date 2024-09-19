@@ -4,29 +4,30 @@ import { z } from "zod";
 
 
 
-export async function CreateGym(request:FastifyRequest, reply:FastifyReply){
+export async function CreateGym(request: FastifyRequest, reply: FastifyReply) {
     const createSchemaBody = z.object({
-        title:z.string(),
-        description:z.string().nullable(),
-        phone:z.string().nullable(),
-        latitude:z.number().refine(value =>{
+        title: z.string(),
+        description: z.string().nullable(),
+        phone: z.string().nullable(),
+        latitude: z.number().refine(value => {
             return Math.abs(value) <= 90
         }),
-        longitude:z.number().refine(value => {
+        longitude: z.number().refine(value => {
             return Math.abs(value) <= 180
         })
     })
 
-    const {title, description, phone, latitude, longitude} = createSchemaBody.parse(request.body)
+    const { title, description, phone, latitude, longitude } = createSchemaBody.parse(request.body)
 
-        const CreateGym = makeCreateGymUseCase()
+    const CreateGymUSeCase = makeCreateGymUseCase()
 
-        CreateGym.execute({
-            title,
-            description,
-            phone,
-            latitude,
-            longitude
-        })
+    await CreateGymUSeCase.execute({
+        title,
+        description,
+        phone,
+        latitude,
+        longitude
+    })
 
+    return reply.status(201).send()
 }
