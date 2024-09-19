@@ -1,5 +1,5 @@
 import { CheckIn } from '@prisma/client'
-import { checkInsRepository } from '@/repositories/prisma/check-ins-repository'
+import { PrismaCheckInsRepository } from '@/repositories/prisma/prisma-check-ins-repository'
 
 
 interface FetchUserCheckInHistoryUseCaseRequest {
@@ -13,7 +13,7 @@ interface FetchUserCheckInHistoryUseCaseResponse {
 
 export class FetchUserCheckInHistoryUseCase {
     constructor(
-        private checkInsRepository: checkInsRepository
+        private checkInsRepository: PrismaCheckInsRepository
     ) { }
 
     async execute({

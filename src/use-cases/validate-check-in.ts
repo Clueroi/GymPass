@@ -1,10 +1,6 @@
 import { CheckIn } from '@prisma/client'
-import { checkInsRepository } from '@/repositories/prisma/check-ins-repository'
-import { GymsRepository } from '@/repositories/prisma/gyms-repository'
+import { PrismaCheckInsRepository } from '@/repositories/prisma/prisma-check-ins-respository'
 import { ResourceNotFound } from './errors/resource-not-found-error'
-import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
-import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins'
-import { MaxDistanceError } from './errors/max-distance-error'
 import dayjs from 'dayjs'
 import { LateCheckInValidationError } from './errors/late-check-in-validation-error'
 
@@ -19,7 +15,7 @@ interface ValidateUseCaseResponse {
 
 export class ValidateUseCase {
     constructor(
-        private checkInsRepository: checkInsRepository,
+        private checkInsRepository: PrismaCheckInsRepository,
     ) { }
 
     async execute({
