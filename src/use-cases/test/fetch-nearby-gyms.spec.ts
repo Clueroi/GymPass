@@ -24,7 +24,7 @@ describe('fetch nearby gyms use case', ()=>{
 
         await gymsRepository.create({
             description:'banas',
-            latitude: -25.5792591,
+            latitude: -25.3737385,
             longitude: -47.4813004,
             phone:'',
             title:'Far Gym'

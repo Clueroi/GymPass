@@ -7,7 +7,7 @@ import { history } from "./history-controller";
 import { metrics } from "./metrics-controller";
 
 
-export function checkInRoutes(app:FastifyInstance){
+export async function checkInRoutes(app:FastifyInstance){
 
     app.addHook('onRequest',verifyJWT)
 
