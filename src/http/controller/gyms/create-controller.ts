@@ -5,7 +5,7 @@ import { z } from "zod";
 
 
 export async function CreateGym(request: FastifyRequest, reply: FastifyReply) {
-    const createSchemaBody = z.object({
+    const createGymSchemaBody = z.object({
         title: z.string(),
         description: z.string().nullable(),
         phone: z.string().nullable(),
@@ -17,7 +17,7 @@ export async function CreateGym(request: FastifyRequest, reply: FastifyReply) {
         })
     })
 
-    const { title, description, phone, latitude, longitude } = createSchemaBody.parse(request.body)
+    const { title, description, phone, latitude, longitude } = createGymSchemaBody.parse(request.body)
 
     const CreateGymUSeCase = makeCreateGymUseCase()
 
