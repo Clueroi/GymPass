@@ -1,7 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { z } from 'zod'
-import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
-import { makeAuthenticateUseCase } from '@/use-cases/factory/make-authenticate-use-case'
+
 
 // post('/users', async...)
 export async function refresh(
