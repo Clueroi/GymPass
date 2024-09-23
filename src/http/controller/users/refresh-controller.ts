@@ -5,57 +5,40 @@ import { makeAuthenticateUseCase } from '@/use-cases/factory/make-authenticate-u
 
 // post('/users', async...)
 export async function refresh(
-  request: FastifyRequest,
-  reply: FastifyReply,
+    request: FastifyRequest,
+    reply: FastifyReply,
 ) {
-  const authenticateBodySchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(6),
-  })
 
-  const { email, password } = authenticateBodySchema.parse(request.body)
-
-  try {
-    const authenticateUseCase = makeAuthenticateUseCase()
-
-    const { user } = await authenticateUseCase.execute({
-      email,
-      password,
+    await request.jwtVerify({
+        onlyCookie: true
     })
 
     const token = await reply.jwtSign(
-      {},
-      {
-        sign: {
-          sub: user.id,
+        {},
+        {
+            sign: {
+                sub: request.user.sub,
+            },
         },
-      },
     )
 
     const refreshToken = await reply.jwtSign(
-      {},
-      {
-        sign: {
-          sub: user.id,
-          expiresIn: '7d',
+        {},
+        {
+            sign: {
+                sub: request.user.sub,
+                expiresIn: '7d',
+            },
         },
-      },
     )
 
     return reply
-      .setCookie('refreshToken', refreshToken, {
-        path: '/',
-        secure: true,
-        sameSite: true,
-        httpOnly: true,
-      })
-      .status(200)
-      .send({ token })
-  } catch (err) {
-    if (err instanceof InvalidCredentialsError) {
-      reply.status(409).send({ message: err.message })
-    }
-
-    return reply.status(500).send() // TODO: Fix me
-  }
+        .setCookie('refreshToken', refreshToken, {
+            path: '/',
+            secure: true,
+            sameSite: true,
+            httpOnly: true,
+        })
+        .status(200)
+        .send({ token })
 }
