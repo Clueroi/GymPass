@@ -23,8 +23,8 @@ describe('Profile (e2e)', () => {
             title: 'JavaScript Gym',
             description:'Somethig',
             phone:'2222222',
-            longitude: -46.4813004,
             latitude: -23.5792591,
+            longitude: -46.4813004,
         })
 
         expect(profileResponse.statusCode).toEqual(201)

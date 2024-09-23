@@ -4,7 +4,7 @@ import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-
 import { makeAuthenticateUseCase } from '@/use-cases/factory/make-authenticate-use-case'
 
 // post('/users', async...)
-export async function authenticate(
+export async function refresh(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
